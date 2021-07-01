@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import NewTripForm from './NewTripForm'
 class NewTripContainer extends Component {
     render() {
-        const findDriver = this.props.drivers.find(driver => driver.id == this.props.match.params.driverId)
+
+        const findDriver = this.props.drivers.find(driver => driver.id === parseInt(this.props.match.params.driverId, 10))
         console.log("findDriver", this.props)
         return(
             <div>

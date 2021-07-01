@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 const DriverShow = (props) => {
-    
-    const driver = props.drivers.find(driver => driver.id == props.match.params.id) 
+    console.log("props", props)
+    const driver = props.drivers.find(driver => driver.id === parseInt(props.match.params.id, 10)) 
     return(
         <div>
             {driver ? <div>

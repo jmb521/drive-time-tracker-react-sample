@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCloudRain} from '@fortawesome/free-solid-svg-icons'
+import {addTrip} from './actions/tripActions'
 class NewTripForm extends Component {
     state = {
         weather: "", 
@@ -18,7 +19,7 @@ class NewTripForm extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault()
-
+        this.props.addTrip(this.state)
 
     }
     render() {
@@ -42,4 +43,4 @@ class NewTripForm extends Component {
     }
 }
 
-export default connect()(NewTripForm)
+export default connect(null, {addTrip})(NewTripForm)

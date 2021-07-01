@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import {combineReducers, createStore} from 'redux'
 import driverReducer from './reducers/driverReducer'
+import tripReducer from './reducers/tripReducer'
 
-const store = createStore(driverReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const rootReducer = combineReducers({drivers: driverReducer, trips: tripReducer})
+
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 ReactDOM.render(
