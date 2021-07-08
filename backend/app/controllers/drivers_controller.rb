@@ -11,7 +11,19 @@ class DriversController < ApplicationController
         end
     end
 
-    
+    def index
+        drivers = Driver.all
+        render json: drivers, include: [:trips]
+    end
+
+    # def incomplete_trips
+    #     d = Driver.find_by(id: params[:id])
+    #     if d
+    #         render json: d.incomplete_trips
+    #     else
+    #         render json: {error: "Driver not found"}
+    #     end
+    # end
 
     private
 

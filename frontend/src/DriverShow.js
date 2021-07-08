@@ -17,9 +17,9 @@ const DriverShow = (props) => {
 }
 
 const mapStateToProps = state => {
-    
+    console.log("state in DriverShow", state)
     return {
-        drivers: state.drivers
+        drivers: state.driverReducer.drivers
     }
 }
 export default connect(mapStateToProps)(DriverShow)

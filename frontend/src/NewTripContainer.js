@@ -3,20 +3,23 @@ import {connect} from 'react-redux'
 import NewTripForm from './NewTripForm'
 class NewTripContainer extends Component {
     render() {
-
-        const findDriver = this.props.drivers.find(driver => driver.id === parseInt(this.props.match.params.driverId, 10))
-        console.log("findDriver", this.props)
+        const driverId = parseInt(this.props.match.params.driverId, 10)
+        const findDriver = this.props.drivers && this.props.drivers.find(driver => driver.id === driverId)
+        const trips = this.props.trips && this.props.trips.filter(trip => trip.driver_id === driverId)
         return(
             <div>
-                <h2>{findDriver.firstName}</h2>
-                <NewTripForm />
+                <h2>{findDriver.first_name}</h2>
+                <NewTripForm driver={driverId}/>
+                {trips}
             </div>
         )
     }
 }
 const mapStateToProps = state => {
+    console.log("state in new trip container", state)
     return {
-        drivers: state.drivers
+        drivers: state.driverReducer.drivers, 
+        trips: state.trips
     }
 }
 

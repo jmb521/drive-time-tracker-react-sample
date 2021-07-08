@@ -4,9 +4,8 @@ import React, {Component} from 'react'
 class DriverForm extends Component {
 
     state = {
-        id: 1,
-        firstName: "", 
-        lastName: ""
+        first_name: "", 
+        last_name: ""
     }
 
     handleOnChange = e => {
@@ -19,12 +18,11 @@ class DriverForm extends Component {
         e.preventDefault()
         this.props.handleAddUser(this.state)
 
-        this.setState((prevState) => {
-            return {
-                firstName: "", 
-                lastName: "", 
-                id: prevState.id + 1
-            }
+        this.setState({
+            
+                first_name: "", 
+                last_name: "", 
+            
         })
     }
 
@@ -32,10 +30,10 @@ class DriverForm extends Component {
         return(
             <form onSubmit={this.handleSubmit}>
                 <label>First Name: </label>
-                <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleOnChange} />
+                <input type="text" name="first_name" value={this.state.first_name} onChange={this.handleOnChange} />
                 <br />
                 <label>Last Name: </label>
-                <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleOnChange} />
+                <input type="text" name="last_name" value={this.state.last_name} onChange={this.handleOnChange} />
                 <br />
                 <input type="submit" value="Create new driver" />
             </form>

@@ -6,8 +6,8 @@ import {addTrip} from './actions/tripActions'
 class NewTripForm extends Component {
     state = {
         weather: "", 
-        timeOfDay: "", 
-        startTime: "", 
+        time_of_day: "", 
+        start_time: "", 
         
     }
 
@@ -19,10 +19,11 @@ class NewTripForm extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault()
-        this.props.addTrip(this.state)
+        this.props.addTrip({...this.state, driver_id: this.props.driverId})
 
     }
     render() {
+
         return(
             <form onSubmit={this.handleOnSubmit}>
                 <label for="weather"><FontAwesomeIcon icon={faCloudRain} />
@@ -32,10 +33,10 @@ class NewTripForm extends Component {
                 Sunny: <input type="radio" name="weather" value="Sunny" onChange={this.handleOnChange}/>
                 <br />
                 <label>Time of Day</label>
-                <input type="text" name="timeOfDay" value={this.state.timeOfDay} onChange={this.handleOnChange}/>
+                <input type="text" name="time_of_day" value={this.state.time_of_day} onChange={this.handleOnChange}/>
                 <br />
                 <label>Start Time: </label>
-                <input type="time" name="startTime" value={this.state.startTime} onChange={this.handleOnChange} />
+                <input type="time" name="start_time" value={this.state.start_time} onChange={this.handleOnChange} />
                 <br />
                 <input type="submit" value="Start Driving!" />
             </form>

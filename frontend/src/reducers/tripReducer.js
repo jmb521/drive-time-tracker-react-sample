@@ -1,6 +1,6 @@
 
  const tripReducer = (state = [], action) => {
-
+    console.log("from tripReducer", action)
     switch(action.type) {
         case "ADD_TRIP": 
             return [...state, action.trip]; 
