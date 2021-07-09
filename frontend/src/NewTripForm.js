@@ -20,7 +20,7 @@ class NewTripForm extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         this.props.addTrip({...this.state, driver_id: this.props.driverId})
-
+        this.props.history.push(`/drivers/${this.props.driverId}`)
     }
     render() {
 
