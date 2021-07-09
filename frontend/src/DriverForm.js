@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-
-
+import {addDriver} from './actions/driverActions'
+import {connect} from 'react-redux'
 class DriverForm extends Component {
 
     state = {
@@ -16,7 +16,7 @@ class DriverForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.handleAddUser(this.state)
+        this.props.addDriver(this.state)
 
         this.setState({
             
@@ -42,4 +42,4 @@ class DriverForm extends Component {
 
 }
 
-export default DriverForm
+export default connect(null, {addDriver})(DriverForm)
