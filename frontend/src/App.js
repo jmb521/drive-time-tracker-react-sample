@@ -9,7 +9,7 @@ import { getAllDrivers} from './actions/driverActions';
 import { getTrips } from './actions/tripActions';
 import {connect} from 'react-redux'
 import Nav from './components/navigation/Nav'
-
+import {getCurrentUser} from './actions/google'
 
 class App extends Component {
 
@@ -21,6 +21,8 @@ class App extends Component {
     if(this.props.trips.length <= 1) {
       this.props.getTrips()
     }
+
+    this.props.getCurrentUser()
   }
 
   render() {
@@ -49,4 +51,4 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({drivers: state.driverReducer.drivers, trips: state.trips}), {getAllDrivers, getTrips})(App);
+export default connect(state => ({drivers: state.driverReducer.drivers, trips: state.trips}), {getAllDrivers, getTrips, getCurrentUser})(App);

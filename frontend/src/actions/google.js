@@ -17,6 +17,14 @@ export const handleLogin = (googleData) => {
 
 }
 
+export const getCurrentUser = () => {
+    return dispatch => {
+        fetch("http://localhost:3001/verify_logged_in")
+        .then(response => response.json())
+        .then(response => dispatch({type: "SET_USER", user: response}))
+    }
+}
+
 export const logoutUser = () => {
     return dispatch => {
         fetch("http://localhost:3001/logout")

@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
 
     def self.from_omniauth(auth)
+        binding.irb
         user = User.first_or_initialize(email: auth["email"]) do |u|
             u.username = auth["name"]
 

@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   # post '/auth/google_oauth2/callback', to: 'sessions#create'
   post 'auth/request', to: "sessions#authorize"
   get '/logout', to: "sessions#destroy"
+  get '/verify_logged_in', to: "sessions#verify_logged_in"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
