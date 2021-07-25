@@ -17,7 +17,11 @@ class DriverContainer extends Component {
     }
 }
 
-
+// const mapStateToProps = (state) => {
+//     return {
+//         drivers: state.driverReducer.drivers
+//     }
+// }
 
 
 export default connect(state => ({drivers: state.driverReducer.drivers}) )(DriverContainer)

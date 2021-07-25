@@ -42,3 +42,11 @@ li {
   display: grid; 
   place-items: center;
 }
+
+.log-table {
+  border: 1px solid black
+}
+.log-table tr td {
+  border: 1px solid black
+}
+

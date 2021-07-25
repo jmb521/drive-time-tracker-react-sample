@@ -7,25 +7,23 @@ const DriverShow = (props) => {
     const driver = props.drivers.find(driver => driver.id === parseInt(props.match.params.id, 10)) 
     return(
         <div>
-            <DriverLog driver={driver} />
             {
-            driver ? 
-            <div>
+                driver ? 
+                <div>
                 {driver.firstName} {driver.lastName}
                 <br />
                 <Link to={{pathname:`${driver.id}/trips/new`}}>Add new trip</Link>
             </div> 
             : 
             <p>Driver not found</p>
-            }
+        }
                 <br />
-                {console.log("driver in driverShow", driver)}
+        <DriverLog driver={driver} />
         </div>
     )
 }
 
 const mapStateToProps = state => {
-    console.log("state in DriverShow", state)
     return {
         drivers: state.driverReducer.drivers
     }
