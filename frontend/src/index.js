@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import GoogleLogin from 'react-google-login';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import {applyMiddleware, combineReducers, createStore} from 'redux'
@@ -10,9 +9,9 @@ import driverReducer from './reducers/driverReducer'
 import tripReducer from './reducers/tripReducer'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import userReducer from './reducers/userReducer'
 
-
-const rootReducer = combineReducers({driverReducer, trips: tripReducer})
+const rootReducer = combineReducers({driverReducer, trips: tripReducer, currentUser: userReducer})
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 

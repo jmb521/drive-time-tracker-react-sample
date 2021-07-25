@@ -9,23 +9,30 @@ import { getAllDrivers} from './actions/driverActions';
 import { getTrips } from './actions/tripActions';
 import {connect} from 'react-redux'
 import Nav from './components/navigation/Nav'
+
+
 class App extends Component {
 
 
   componentDidMount() {
-    console.log("props in app", this.props)
-    this.props.getAllDrivers()
-    this.props.getTrips()
+    if (this.props.drivers.length <= 1) {
+      this.props.getAllDrivers()
+    }
+    if(this.props.trips.length <= 1) {
+      this.props.getTrips()
+    }
   }
 
-  
   render() {
+   
 
       return (
         <div className="App">
         <Router>
-          <Nav /> 
+          <Nav />
+          
           <Switch>
+            
           <Route exact path="/drivers">
               <DriverContainer />
           </Route>
@@ -42,4 +49,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, {getAllDrivers, getTrips})(App);
+export default connect(state => ({drivers: state.driverReducer.drivers, trips: state.trips}), {getAllDrivers, getTrips})(App);
