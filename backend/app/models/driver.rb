@@ -1,7 +1,7 @@
 class Driver < ApplicationRecord
 
     has_many :trips
-
+    belongs_to :user
 
     def total_hours
         self.trips.map do|trip| 

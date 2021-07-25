@@ -16,6 +16,7 @@ class DriversController < ApplicationController
         render json: drivers, include: [:trips]
     end
 
+  
     # def incomplete_trips
     #     d = Driver.find_by(id: params[:id])
     #     if d
