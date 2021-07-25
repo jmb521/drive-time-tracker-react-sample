@@ -1,15 +1,22 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-
-const Nav = () => {
+import { handleLogin } from '../../actions/google'
+import Login from '../Login'
+import Logout from '../Logout'
+const Nav = (props) => {
     const link = {
         color: "lightgrey", 
 
     }
+    
     const activeLink = {
         color: "white", 
         fontWeight: "bold"
     }
+
+
+
     return(
         <div className="navbar">
             <ul>
@@ -34,10 +41,15 @@ const Nav = () => {
                     Add Driver
               </NavLink>
                 </li>
+                <li>|</li>
+                <li>
+                   
+                   <Login />
+                   <Logout />
+                </li>
             </ul>
-            
         </div>
     )
 }
 
-export default Nav
+export default connect(null, {handleLogin})(Nav)
