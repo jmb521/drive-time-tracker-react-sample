@@ -1,47 +1,49 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCloudRain} from '@fortawesome/free-solid-svg-icons'
 import {addTrip} from './actions/tripActions'
-class NewTripForm extends Component {
-    state = {
+const NewTripForm = (props) => {
+    const [formData, setFormData] = useState({
         weather: "", 
         time_of_day: "", 
         start_time: "", 
-        
-    }
+    })
+   const history = useHistory() 
 
-    handleOnChange = (e) => {
-        this.setState({
+    const handleOnChange = (e) => {
+        setFormData({
+            ...formData, 
             [e.target.name]: e.target.value
         })
     }
 
-    handleOnSubmit = (e) => {
+    const handleOnSubmit = (e) => {
         e.preventDefault()
-        this.props.addTrip({...this.state, driver_id: this.props.driverId})
-        this.props.history.push(`/drivers/${this.props.driverId}`)
+        props.addTrip({...formData, driver_id: props.driverId})
+        history.push(`/drivers/${props.driverId}`)
     }
-    render() {
+    
 
         return(
-            <form onSubmit={this.handleOnSubmit}>
+            <form onSubmit={handleOnSubmit}>
                 <label for="weather"><FontAwesomeIcon icon={faCloudRain} />
-                    <input type="radio" name="weather" value="Rainy" onChange={this.handleOnChange}/>
+                    <input type="radio" name="weather" value="Rainy" onChange={handleOnChange}/>
                 </label>
                 
-                Sunny: <input type="radio" name="weather" value="Sunny" onChange={this.handleOnChange}/>
+                Sunny: <input type="radio" name="weather" value="Sunny" onChange={handleOnChange}/>
                 <br />
                 <label>Time of Day</label>
-                <input type="text" name="time_of_day" value={this.state.time_of_day} onChange={this.handleOnChange}/>
+                <input type="text" name="time_of_day" value={formData.time_of_day} onChange={handleOnChange}/>
                 <br />
                 <label>Start Time: </label>
-                <input type="time" name="start_time" value={this.state.start_time} onChange={this.handleOnChange} />
+                <input type="time" name="start_time" value={formData.start_time} onChange={handleOnChange} />
                 <br />
                 <input type="submit" value="Start Driving!" />
             </form>
         )
-    }
+    
 }
 
 export default connect(null, {addTrip})(NewTripForm)
