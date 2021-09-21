@@ -1,44 +1,44 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {addDriver} from './actions/driverActions'
 import {connect} from 'react-redux'
-class DriverForm extends Component {
+const DriverForm = ({addDriver}) => {
 
-    state = {
+    const [formData, setFormData] = useState({
         first_name: "", 
         last_name: ""
-    }
+    })
 
-    handleOnChange = e => {
-        this.setState({
+    const handleOnChange = e => {
+        setFormData({
+            ...formData, 
             [e.target.name]: e.target.value
+
         })
     }
 
-    handleSubmit = e => {
+    const handleSubmit = e => {
         e.preventDefault()
-        this.props.addDriver(this.state)
+        addDriver(formData)
 
-        this.setState({
-            
-                first_name: "", 
-                last_name: "", 
-            
+        setFormData({
+            first_name: "", 
+            last_name: ""
         })
     }
 
-    render() {
-        return(
-            <form onSubmit={this.handleSubmit}>
-                <label>First Name: </label>
-                <input type="text" name="first_name" value={this.state.first_name} onChange={this.handleOnChange} />
-                <br />
-                <label>Last Name: </label>
-                <input type="text" name="last_name" value={this.state.last_name} onChange={this.handleOnChange} />
-                <br />
-                <input type="submit" value="Create new driver" />
-            </form>
-        )
-    }
+    
+    return(
+        <form onSubmit={handleSubmit}>
+            <label>First Name: </label>
+            <input type="text" name="first_name" value={formData.first_name} onChange={handleOnChange} />
+            <br />
+            <label>Last Name: </label>
+            <input type="text" name="last_name" value={formData.last_name} onChange={handleOnChange} />
+            <br />
+            <input type="submit" value="Create new driver" />
+        </form>
+    )
+    
 
 }
 
